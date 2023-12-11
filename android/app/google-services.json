@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "1051041635036",
+    "project_id": "healthpal-50854",
+    "storage_bucket": "healthpal-50854.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1051041635036:android:d09c911a838ae9403b3219",
+        "android_client_info": {
+          "package_name": "com.example.health_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAR5puvJfEX90iJHRyUppUi1poCrqgZoh0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1051041635036:android:eb14a81b9f1330193b3219",
+        "android_client_info": {
+          "package_name": "com.example.health_pal"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAR5puvJfEX90iJHRyUppUi1poCrqgZoh0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1051041635036:android:26ccf41b66a9574f3b3219",
+        "android_client_info": {
+          "package_name": "com.example.healthpal"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAR5puvJfEX90iJHRyUppUi1poCrqgZoh0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
