@@ -1,13 +1,12 @@
-// ignore_for_file: avoid_print
-
 import 'dart:io';
-import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:get/get.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:healthpal/src/core/model/user_model.dart';
 
-class PdfUpload extends GetxController {
+class UploadTestController extends GetxController {
   RxString pdfPath = ''.obs;
   Rx<PlatformFile?> selectedFile = Rx<PlatformFile?>(null);
 
@@ -38,7 +37,7 @@ class PdfUpload extends GetxController {
           .ref('pdfs/$pdfFileName')
           .getDownloadURL();
 
-      await FirebaseFirestore.instance.collection('users').add({
+      await FirebaseFirestore.instance.collection('Bookin').add({
         "Email": userModel.email,
         "Password": userModel.password,
         "PhoneNumber": userModel.phone,

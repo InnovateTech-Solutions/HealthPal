@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:healthpal/src/config/theme/theme.dart';
 import 'package:healthpal/src/core/constants/constants.dart';
 import 'package:healthpal/src/core/model/form_model.dart';
@@ -11,9 +13,15 @@ import 'package:healthpal/src/core/widget/text_widget.dart';
 import 'package:healthpal/src/featuers/doctor_register/controller/doctor_register_controller.dart';
 import 'package:healthpal/src/featuers/doctor_register/controller/pdf_controller.dart';
 
-class DoctorRegisterScreen extends StatelessWidget {
+class DoctorRegisterScreen extends StatefulWidget {
   const DoctorRegisterScreen({super.key});
 
+  @override
+  State<DoctorRegisterScreen> createState() => _DoctorRegisterScreenState();
+}
+
+class _DoctorRegisterScreenState extends State<DoctorRegisterScreen> {
+  String? selectedCategory;
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(DoctorRegisterController());
@@ -21,7 +29,7 @@ class DoctorRegisterScreen extends StatelessWidget {
     final pdfController = Get.put(PdfUpload());
     return Scaffold(
       body: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -34,7 +42,7 @@ class DoctorRegisterScreen extends StatelessWidget {
               Form(
                 key: controller.formkey,
                 child: SizedBox(
-                  height: 500,
+                  height: 700,
                   width: double.infinity,
                   child: ListView(
                     padding: const EdgeInsets.symmetric(
@@ -161,9 +169,9 @@ class DoctorRegisterScreen extends StatelessWidget {
                                               icon: const Icon(
                                                 Icons.delete,
                                                 color: Colors.red,
-                                              ))
+                                              )),
                                         ],
-                                      )
+                                      ),
                                     ],
                                   );
                                 }
@@ -172,28 +180,110 @@ class DoctorRegisterScreen extends StatelessWidget {
                           ),
                         ),
                       ),
+                      const Gap(15),
+                      Column(
+                        children: [
+                          StreamBuilder<QuerySnapshot>(
+                            stream: FirebaseFirestore.instance
+                                .collection('MedicalCenter')
+                                .snapshots(),
+                            builder: (context, snapshot) {
+                              if (!snapshot.hasData) {
+                                return const CircularProgressIndicator();
+                              }
+
+                              List<DocumentSnapshot> categories =
+                                  snapshot.data!.docs;
+
+                              List<String> categoryTitles = categories
+                                  .map((e) => e['title'].toString())
+                                  .toList();
+
+                              return Container(
+                                height: 50,
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                        color: const Color.fromARGB(
+                                            255, 225, 254, 226)),
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Colors.grey.withOpacity(0.5),
+                                          spreadRadius: 2,
+                                          blurRadius: 3,
+                                          offset: const Offset(0, 2)),
+                                    ],
+                                    color: AppColor.subappcolor,
+                                    borderRadius: BorderRadius.circular(7)),
+                                child: Center(
+                                  child: DropdownButton(
+                                    dropdownColor: AppColor.subappcolor,
+                                    icon: Icon(
+                                      Icons.arrow_drop_down_circle_sharp,
+                                      color: AppColor.buttonColor,
+                                    ),
+                                    hint: const Text('Select category'),
+                                    value: selectedCategory,
+                                    onChanged: (newValue) {
+                                      setState(() {
+                                        selectedCategory = newValue;
+                                      });
+
+                                      // Handle any other actions on selection if needed
+                                    },
+                                    items: categoryTitles.map((title) {
+                                      return DropdownMenuItem(
+                                        value: title,
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 10),
+                                          child: Text(
+                                            title,
+                                            style: GoogleFonts.poppins(
+                                                textStyle: TextStyle(
+                                                    color:
+                                                        AppColor.mainAppColor,
+                                                    fontWeight:
+                                                        FontWeight.w400)),
+                                          ),
+                                        ),
+                                      );
+                                    }).toList(), // Remove the underline
+                                    underline: Container(),
+                                    isExpanded: true,
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        ],
+                      ),
+                      const Gap(15),
+                      formscontainer(
+                          title: 'Sign In',
+                          onTap: () => {
+                                controller.onSignup(UserModel(
+                                    email: controller.email.text,
+                                    name: controller.userName.text,
+                                    password: controller.password.text,
+                                    phone: controller.phoneNumber.text,
+                                    userType: 'Doctor',
+                                    imageUrl: '')),
+                                pdfController.saveToFirebase(
+                                    UserModel(
+                                      email: controller.email.text,
+                                      name: controller.userName.text,
+                                      password: controller.password.text,
+                                      phone: controller.phoneNumber.text,
+                                      userType: 'Doctor',
+                                      imageUrl: '',
+                                    ),
+                                    selectedCategory ?? '')
+                              })
                     ],
                   ),
                 ),
               ),
-              formscontainer(
-                  title: 'Sign In',
-                  onTap: () => {
-                        controller.onSignup(UserModel(
-                            email: controller.email.text,
-                            name: controller.userName.text,
-                            password: controller.password.text,
-                            phone: controller.password.text,
-                            userType: 'Doctor',
-                            imageUrl: '')),
-                        pdfController.saveToFirebase(UserModel(
-                            email: controller.email.text,
-                            name: controller.userName.text,
-                            password: controller.password.text,
-                            phone: controller.password.text,
-                            userType: 'Doctor',
-                            imageUrl: ''))
-                      })
             ],
           ),
         ),

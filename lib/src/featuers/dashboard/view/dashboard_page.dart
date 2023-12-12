@@ -40,9 +40,13 @@ class _DashBoardPgaeState extends State<DashBoardPgae> {
               return const LoadingPage();
             }
             return Text(LocalStroageController().isLoggedIn.value.toString());
+          } else if (controller.userType == 'User') {
+            return const UserDashBorad();
           } else {
             // Return DashboardWidget
-            return const UserDashBorad();
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
           }
         }
       },
