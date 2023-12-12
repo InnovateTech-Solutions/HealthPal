@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -136,7 +138,7 @@ class _UpdateProfileWidgetState extends State<UpdateProfileWidget> {
                                       onTap: () {}),
                                 ),
                                 const Gap(15),
-                                textFieldLabel('user Type'),
+                                textFieldLabel('phone number'),
                                 FormWidget(
                                   textForm: FormModel(
                                       enableText: true,

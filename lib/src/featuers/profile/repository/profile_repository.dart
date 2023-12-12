@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:get/get.dart';
 import 'package:healthpal/src/config/theme/theme.dart';
 import 'package:healthpal/src/core/model/user_model.dart';
@@ -25,6 +27,8 @@ class ProfileRepository extends GetxController {
           snackPosition: SnackPosition.BOTTOM,
           colorText: AppColor.mainAppColor,
           backgroundColor: AppColor.success);
-    } catch (e) {}
+    } catch (e) {
+      rethrow;
+    }
   }
 }

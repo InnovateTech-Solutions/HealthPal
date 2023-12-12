@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:healthpal/src/config/theme/theme.dart';
+import 'package:healthpal/src/featuers/book_appointment/appointment/view/appointment_screen.dart';
+import 'package:healthpal/src/featuers/book_appointment/doctor/view/doctor_screen.dart';
 import 'package:healthpal/src/featuers/dashboard/view/dashboard_page.dart';
+import 'package:healthpal/src/featuers/dashboard/widget/medicial/medicial_continer.dart';
 import 'package:healthpal/src/featuers/profile/view/profile_page.dart';
-import 'package:healthpal/test/docotr_list.dart';
-import 'package:healthpal/test/list_medical.dart';
-import 'package:healthpal/test/pdf.dart';
-import 'package:healthpal/test/test.dart';
+import 'package:healthpal/test/doctors_view.dart';
+import 'package:healthpal/test/upload_test.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -18,11 +19,11 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0;
   static final List<Widget> _widgetsOptions = [
-    DashBoardPgae(),
-    const MyDropdownWidget(),
-    const MyForm(),
-    DoctorListScreen(),
-    ProfileWidget()
+    const DashBoardPgae(),
+    BookingScreen(),
+    const DoctorScrenn(),
+    const AppointmentScreen(),
+    const ProfileWidget()
   ];
   @override
   Widget build(BuildContext context) {

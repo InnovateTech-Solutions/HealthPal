@@ -67,7 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               onChange: null,
                               inputFormat: [],
                               onTap: null)),
-                      const Gap(10),
+                      const Gap(15),
                       FormWidget(
                           textForm: FormModel(
                               controller: controller.password,
@@ -81,7 +81,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               onChange: null,
                               inputFormat: [],
                               onTap: null)),
-                      const Gap(10),
+                      const Gap(15),
                       formscontainer(
                           title: 'Sign In',
                           onTap: () => {

@@ -1,16 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:gap/gap.dart';
-import 'package:healthpal/src/config/theme/theme.dart';
 import 'package:healthpal/src/core/widget/text_widget.dart';
 
 class MedicicalCenterWidget extends StatelessWidget {
-  const MedicicalCenterWidget({super.key});
+  const MedicicalCenterWidget(
+      {super.key,
+      required this.title,
+      required this.address,
+      required this.entrereview,
+      required this.review,
+      required this.image});
 
+  final String title;
+  final String entrereview;
+  final String address;
+
+  final String review;
+  final String image;
   @override
   Widget build(BuildContext context) {
+    String first20Characters = address.substring(0, 10);
+    var ratingint = double.parse(review);
+    var ratlength = double.parse(review) * 20;
     return Container(
-      width: 215,
+      width: 220,
       height: 115,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
@@ -30,24 +44,28 @@ class MedicicalCenterWidget extends StatelessWidget {
             width: double.infinity,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(3),
-                image: const DecorationImage(
-                    image: NetworkImage(
-                        'https://i.pinimg.com/564x/32/26/fa/3226fae8c2fd31e1c49f441c36ed100c.jpg'),
-                    fit: BoxFit.cover)),
+                image: DecorationImage(
+                    image: NetworkImage(image), fit: BoxFit.cover)),
           ),
-          TextWidget.widgetsText('Sunrise Health Clinic'),
+          const Gap(10),
+          Row(
+            children: [
+              const Gap(5),
+              TextWidget.widgetsText(title),
+            ],
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
             child: Row(
               children: [
-                TextWidget.subAppText('5'),
+                TextWidget.subAppText(review),
                 const Gap(5),
                 RatingBar(
                   itemSize: 15,
                   initialRating: 5,
                   direction: Axis.horizontal,
                   allowHalfRating: true,
-                  itemCount: 5,
+                  itemCount: ratingint.round(),
                   itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
                   ratingWidget: RatingWidget(
                       full: const Icon(
@@ -60,14 +78,14 @@ class MedicicalCenterWidget extends StatelessWidget {
                           const Icon(Icons.star_sharp, color: Colors.yellow)),
                   onRatingUpdate: (double value) {},
                 ),
-                TextWidget.widgetsubText('(58)'),
+                TextWidget.widgetsubText("(${ratlength.round().toString()})"),
               ],
             ),
           ),
           Row(
             children: [
               const Icon(Icons.location_on),
-              TextWidget.widgetsubText('Amman , 7th circle')
+              TextWidget.widgetsubText(first20Characters)
             ],
           )
         ],

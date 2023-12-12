@@ -8,8 +8,9 @@ import 'package:healthpal/src/core/widget/app_container.dart';
 import 'package:healthpal/src/core/widget/search_widget.dart';
 import 'package:healthpal/src/core/widget/text_widget.dart';
 import 'package:healthpal/src/featuers/dashboard/controller/dashboard_controller.dart';
-import 'package:healthpal/src/featuers/dashboard/controller/widget_controller.dart';
-import 'package:healthpal/src/featuers/dashboard/widget/slider_widget.dart';
+import 'package:healthpal/src/featuers/dashboard/widget/doctors/doctor_contianer.dart';
+import 'package:healthpal/src/featuers/dashboard/widget/medicial/medicial_continer.dart';
+import 'package:healthpal/src/featuers/dashboard/widget/slider/slider_widget.dart';
 
 class UserDashBorad extends StatefulWidget {
   const UserDashBorad({Key? key}) : super(key: key);
@@ -58,9 +59,6 @@ class _UserDashBoradState extends State<UserDashBorad> {
                 if (snpshot.connectionState == ConnectionState.done) {
                   if (snpshot.hasData) {
                     final ads = snpshot.data!['ads'];
-                    final medicalCenters = snpshot.data!['MedicalCenters'];
-
-                    final doctors = snpshot.data!['Doctor'];
                     List<Widget> convertSnapshotsToWidgets(
                         List<DocumentSnapshot<Object?>>? documentSnapshots) {
                       List<Widget> widgetsList = [];
@@ -112,37 +110,13 @@ class _UserDashBoradState extends State<UserDashBorad> {
                           ),
                           const Gap(20),
                           TextWidget.dashoboardMainText('Medicial centers'),
-                          SizedBox(
-                            height: 200,
-                            width: double.infinity,
-                            child: ListView.separated(
-                                scrollDirection: Axis.horizontal,
-                                shrinkWrap: true,
-                                separatorBuilder: (conetxt, index) {
-                                  return const Gap(15);
-                                },
-                                itemCount:
-                                    WidgetController().medicialcenters.length,
-                                itemBuilder: (context, index) {
-                                  return WidgetController()
-                                      .medicialcenters[index];
-                                }),
-                          ),
+                          const Gap(20),
+                          const MedicalCenterContainer(),
+                          const Gap(20),
                           TextWidget.dashoboardMainText('Doctors'),
-                          SizedBox(
-                            height: 200,
-                            width: double.infinity,
-                            child: ListView.separated(
-                                scrollDirection: Axis.horizontal,
-                                shrinkWrap: true,
-                                separatorBuilder: (conetxt, index) {
-                                  return const Gap(15);
-                                },
-                                itemCount: WidgetController().doctors.length,
-                                itemBuilder: (context, index) {
-                                  return WidgetController().doctors[index];
-                                }),
-                          ),
+                          const Gap(20),
+                          const DoctorsList(),
+                          const Gap(20),
                         ],
                       ),
                     );

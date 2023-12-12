@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:healthpal/src/core/usecase/authentication/authentication.dart';
 
-class Test extends StatelessWidget {
-  const Test({super.key});
+class TestPage extends StatelessWidget {
+  final String imageUrl;
+
+  TestPage({required this.imageUrl});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          ElevatedButton(
-              onPressed: () => Authentication().logout(),
-              child: const Text('data'))
-        ],
+      appBar: AppBar(
+        title: Text('Test Page'),
+      ),
+      body: Center(
+        child: Image.network(imageUrl),
       ),
     );
   }

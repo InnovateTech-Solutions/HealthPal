@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -53,6 +55,7 @@ class MyController extends GetxController {
       selectedFile.value = null;
     } catch (e) {
       print('Error: $e');
+      rethrow;
     }
   }
 
