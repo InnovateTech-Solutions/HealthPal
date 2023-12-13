@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
+import 'package:healthpal/src/featuers/book_appointment/doctor/view/doctor_screen.dart';
 import 'package:healthpal/src/featuers/dashboard/widget/doctors/doctors_widget.dart';
 
 class DoctorsList extends StatelessWidget {
@@ -30,13 +32,33 @@ class DoctorsList extends StatelessWidget {
               snapshot.data!.docs.map((DocumentSnapshot document) {
             // Access fields using document['field_name']
 
-            return DoctorsWidget(
-              doctorname: document['UserName'],
-              imgname: '${document['UserName']}',
-              ratingNumber: '${document['rating']}',
-              ratingLength: '${document['Email']}',
-              medicialcenter: document['address'],
-              experince: document['experince'],
+            return GestureDetector(
+              onTap: () => Get.to(DoctorScrenn(
+                doctorname: document['UserName'],
+                imgname: '${document['UserName']}',
+                ratingNumber: '${document['rating']}',
+                ratingLength: '${document['rating']}',
+                medicialcenter: document['MedicalCenter'],
+                experince: document['experince'],
+                description: document['description'],
+                address: document['address'],
+                workingHours: document['Working Time'],
+                patients: document['patients'],
+                doctorEmail: document['Email'],
+              )),
+              child: DoctorsWidget(
+                doctorEmail: document['Email'],
+                doctorname: document['UserName'],
+                imgname: '${document['UserName']}',
+                ratingNumber: '${document['rating']}',
+                ratingLength: '${document['rating']}',
+                medicialcenter: document['MedicalCenter'],
+                experince: document['experince'],
+                description: document['description'],
+                address: document['address'],
+                workingHours: document['Working Time'],
+                patients: document['patients'],
+              ),
             );
           }).toList();
           return Column(

@@ -39,9 +39,14 @@ class DoctorUsersList extends StatelessWidget {
                     doctorname: document['UserName'],
                     imgname: '${document['UserName']}',
                     ratingNumber: '${document['rating']}',
-                    ratingLength: '${document['Email']}',
-                    medicialcenter: document['address'],
+                    ratingLength: '${document['rating']}',
+                    medicialcenter: document['MedicalCenter'],
                     experince: document['experince'],
+                    description: document['description'],
+                    address: document['address'],
+                    workingHours: document['Working Time'],
+                    patients: document['patients'],
+                    doctorEmail: document['Email'],
                   );
                 }).toList();
                 return Column(

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:healthpal/src/config/theme/theme.dart';
-import 'package:healthpal/src/featuers/book_appointment/appointment/controller/date_controller.dart';
 
 class TextWidget {
   static Text mainAppText(String title) {
@@ -78,5 +77,14 @@ class TextWidget {
                 fontSize: 14,
                 fontWeight: FontWeight.w400,
                 color: AppColor.buttonColor)));
+  }
+
+  static selectTest(String title) {
+    return Text(title,
+        style: GoogleFonts.poppins(
+            textStyle: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w400,
+                color: AppColor.mainAppColor)));
   }
 }

@@ -1,12 +1,38 @@
 import 'package:calendar_timeline/calendar_timeline.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:healthpal/src/config/theme/theme.dart';
 import 'package:healthpal/src/core/widget/text_widget.dart';
 import 'package:healthpal/src/featuers/book_appointment/appointment/controller/date_controller.dart';
+import 'package:healthpal/src/featuers/book_appointment/upload_test/view/uploadtest_screen.dart';
 
 class AppointmentScreen extends StatefulWidget {
-  const AppointmentScreen({Key? key}) : super(key: key);
+  const AppointmentScreen(
+      {required this.experince,
+      required this.doctorEmail,
+      required this.doctorname,
+      required this.imgname,
+      required this.ratingNumber,
+      required this.ratingLength,
+      required this.medicialcenter,
+      required this.description,
+      required this.workingHours,
+      required this.address,
+      required this.patients,
+      Key? key})
+      : super(key: key);
+  final String doctorEmail;
 
+  final String doctorname;
+  final String imgname;
+  final String ratingNumber;
+  final String ratingLength;
+  final String medicialcenter;
+  final String experince;
+  final String description;
+  final String workingHours;
+  final String address;
+  final String patients;
   @override
   State<AppointmentScreen> createState() => _AppointmentScreenState();
 }
@@ -65,9 +91,27 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
               ),
               itemCount: DateController().timeList.length,
               itemBuilder: (context, index) {
+                List<String> parts = _selectedDate.toString().split(' ');
+                String datePart = parts[0];
                 return ListTile(
-                  title: TextWidget.dateText(DateController().timeList[index]),
-                );
+                    title: GestureDetector(
+                  onTap: () => Get.to(UploadTestScreen(
+                    doctorname: widget.doctorname,
+                    imgname: widget.imgname,
+                    ratingNumber: widget.ratingNumber,
+                    ratingLength: widget.ratingNumber,
+                    medicialcenter: widget.medicialcenter,
+                    experince: widget.experince,
+                    description: widget.description,
+                    address: widget.address,
+                    workingHours: widget.workingHours,
+                    patients: widget.patients,
+                    date: datePart.toString(),
+                    time: DateController().timeList[index],
+                    doctorEmail: widget.doctorEmail,
+                  )),
+                  child: TextWidget.dateText(DateController().timeList[index]),
+                ));
               },
             )),
             const SizedBox(height: 20),

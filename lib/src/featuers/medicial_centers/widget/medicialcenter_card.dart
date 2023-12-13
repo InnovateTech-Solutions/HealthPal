@@ -1,10 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:gap/gap.dart';
-import 'package:get/get.dart';
 import 'package:healthpal/src/core/widget/text_widget.dart';
-import 'package:healthpal/test/chat_flutter.dart';
 
-Center doctorCard({required String name, required String medicialCenter}) {
+Center medicialCard(
+    {required String name,
+    required String address,
+    required String review,
+    required String imgname}) {
+  var ratingint = double.parse(review);
+  // Take the first 20 characters from the string
+
+  // Take the first 20 characters from the string
+  String newadress = address.substring(0, 10);
+  String newName = name.substring(0, 10);
+  // Append ".." to the result
+  String truncatedadress = '$newadress..';
+
+  String truncatedname = '$newName..';
   return Center(
     child: Container(
       height: 133,
@@ -25,35 +38,23 @@ Center doctorCard({required String name, required String medicialCenter}) {
           Container(
             width: 100,
             height: 100,
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: NetworkImage(
-                        'https://i.pinimg.com/564x/16/96/71/169671343ef815d20808e6c9e43c5c19.jpg'),
-                    fit: BoxFit.cover)),
+                    image: NetworkImage(imgname), fit: BoxFit.cover)),
           ),
           const Gap(10),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              TextWidget.mainAppText(name),
+              TextWidget.mainAppText(truncatedname),
               const Gap(5),
               Row(
                 children: [
                   const Icon(Icons.location_on),
                   const Gap(15),
-                  TextWidget.subAppText(medicialCenter)
+                  TextWidget.subAppText(truncatedadress)
                 ],
               ),
-              Row(
-                children: [
-                  IconButton(
-                      onPressed: () => Get.to(const ChatPage()),
-                      icon: const Icon(Icons.chat)),
-                  TextButton(
-                      onPressed: () => Get.to(const ChatPage()),
-                      child: TextWidget.widgetsubText('chat with Doctor!!')),
-                ],
-              )
             ],
           )
         ],

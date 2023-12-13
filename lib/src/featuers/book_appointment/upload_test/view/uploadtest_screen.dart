@@ -2,15 +2,47 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:healthpal/src/config/theme/theme.dart';
+import 'package:healthpal/src/core/usecase/authentication/authentication.dart';
+import 'package:healthpal/src/core/widget/forms_container.dart';
 import 'package:healthpal/src/core/widget/text_widget.dart';
 import 'package:healthpal/src/featuers/book_appointment/upload_test/controller/uploadtest_controller.dart';
 
 class UploadTestScreen extends StatelessWidget {
-  const UploadTestScreen({super.key});
+  const UploadTestScreen(
+      {required this.experince,
+      required this.doctorEmail,
+      required this.doctorname,
+      required this.imgname,
+      required this.ratingNumber,
+      required this.ratingLength,
+      required this.medicialcenter,
+      required this.description,
+      required this.workingHours,
+      required this.address,
+      required this.patients,
+      required this.date,
+      required this.time,
+      super.key});
+  final String doctorEmail;
 
+  final String doctorname;
+  final String imgname;
+  final String ratingNumber;
+  final String ratingLength;
+  final String medicialcenter;
+  final String experince;
+  final String description;
+  final String workingHours;
+  final String address;
+  final String patients;
+  final String time;
+  final String date;
   @override
   Widget build(BuildContext context) {
-    final pdfController = Get.put(UploadTestController());
+    final controller = Get.put(UploadTestController());
+    final authRepo = Get.put(Authentication());
+
+    late final email = authRepo.firebaseUser.value?.email;
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -26,16 +58,18 @@ class UploadTestScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            TextWidget.mainAppText('Uplaod YOUR Test '),
+            const Gap(60),
             GestureDetector(
               onTap: () {
-                // pdfController.pickPDF();
+                controller.pickImage();
               },
               child: Container(
-                height: 125,
-                width: 200,
+                height: 200,
+                width: double.infinity,
                 decoration: BoxDecoration(
                   border: Border.all(color: AppColor.subappcolor),
-                  color: const Color.fromARGB(255, 225, 254, 226),
+                  color: AppColor.buttonColor,
                   borderRadius: BorderRadius.circular(7),
                   boxShadow: [
                     BoxShadow(
@@ -49,38 +83,37 @@ class UploadTestScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Obx(() {
-                      if (pdfController.selectedFile.value == null) {
+                      if (controller.selectedFile.value == null) {
                         return Center(
                           child: Column(
                             children: [
-                              const Gap(10),
-                              TextWidget.subAppText('Add your proof')
+                              const Gap(60),
+                              TextWidget.selectTest('please add image')
                             ],
                           ),
                         ); // Empty container when no file is selected
                       } else {
                         return Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
+                            const Gap(30),
                             Container(
                               margin: const EdgeInsets.symmetric(vertical: 5),
                               width: 90,
-                              height: 65,
-                              decoration: const BoxDecoration(
-                                  image: DecorationImage(
-                                      image: NetworkImage(
-                                          'https://cdn-icons-png.flaticon.com/512/3997/3997608.png'))),
+                              height: 100,
+                              child: Image.network(
+                                  'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Picture_icon_BLACK.svg/1200px-Picture_icon_BLACK.svg.png'),
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 IconButton(
-                                    onPressed: () => {pdfController.pickPDF()},
+                                    onPressed: () => {controller.pickImage()},
                                     icon: const Icon(Icons.edit)),
                                 IconButton(
                                     onPressed: () =>
-                                        {pdfController.deleteSelectedFile()},
+                                        {controller.deleteSelectedFile()},
                                     icon: const Icon(
                                       Icons.delete,
                                       color: Colors.red,
@@ -96,6 +129,13 @@ class UploadTestScreen extends StatelessWidget {
               ),
             ),
             const Gap(15),
+            formscontainer(
+                title: 'make the appointment',
+                onTap: () => controller.saveToFirebase(
+                    docEmail: doctorEmail,
+                    date: date,
+                    time: time,
+                    userEmail: email ?? ''))
           ],
         ),
       ),

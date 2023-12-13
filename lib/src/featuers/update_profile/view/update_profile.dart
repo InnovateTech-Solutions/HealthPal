@@ -122,7 +122,7 @@ class _UpdateProfileWidgetState extends State<UpdateProfileWidget> {
                                       onTap: () {}),
                                 ),
                                 const Gap(15),
-                                textFieldLabel('user Type'),
+                                textFieldLabel('Phone Number'),
                                 FormWidget(
                                   textForm: FormModel(
                                       enableText: false,
@@ -134,7 +134,9 @@ class _UpdateProfileWidgetState extends State<UpdateProfileWidget> {
                                           .vaildateUserName(phoneNumber),
                                       type: TextInputType.number,
                                       onChange: null,
-                                      inputFormat: [],
+                                      inputFormat: [
+                                        validator.maskFormatterPhone
+                                      ],
                                       onTap: () {}),
                                 ),
                                 const Gap(15),

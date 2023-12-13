@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:healthpal/src/config/theme/theme.dart';
 import 'package:healthpal/src/core/widget/text_widget.dart';
 
-Column iconDoctor() {
+Column iconDoctor(
+    {required IconData iconData,
+    required String title,
+    required String number}) {
   return Column(
     children: [
       Container(
@@ -14,14 +17,14 @@ Column iconDoctor() {
         ),
         child: Center(
           child: Icon(
-            Icons.people,
+            iconData,
             color: AppColor.mainAppColor,
             size: 30,
           ),
         ),
       ),
-      TextWidget.widgetsubText('2000'),
-      TextWidget.widgetsubText('patients')
+      TextWidget.widgetsubText(number),
+      TextWidget.widgetsubText(title)
     ],
   );
 }

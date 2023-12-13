@@ -7,7 +7,7 @@ class BookingController extends GetxController {
   RxList bookedTimelist = [].obs;
   RxList timeList = [].obs;
   late RxList<DocumentSnapshot<Map<String, dynamic>>> allbookings;
-    @override
+  @override
   void onInit() {
     super.onInit();
     allbookings = <DocumentSnapshot<Map<String, dynamic>>>[].obs;
@@ -16,9 +16,11 @@ class BookingController extends GetxController {
   Future<bool> isTimeSlotAvailable(Booking booking) async {
     final firestore = FirebaseFirestore.instance;
     final bookingsCollection = firestore.collection('Bookings');
+    List<String> parts = booking.date.split(' ');
+    String datePart = parts[0];
     final bookingQuery = await bookingsCollection
         .where('docEmail', isEqualTo: booking.docEmail)
-        .where('date', isEqualTo: booking.date)
+        .where('date', isEqualTo: datePart)
         .where('time', isEqualTo: booking.time)
         .get();
     print(bookingQuery.docs.isEmpty);
@@ -26,7 +28,7 @@ class BookingController extends GetxController {
     return bookingQuery.docs.isEmpty;
   }
 
-  Future<void> createBooking(Booking booking) async {
+  Future<bool> createBooking(Booking booking) async {
     final isAvailable = await isTimeSlotAvailable(booking);
 
     if (isAvailable) {
@@ -34,12 +36,14 @@ class BookingController extends GetxController {
       final bookingsCollection = firestore.collection('Bookings');
       await bookingsCollection.add(booking.toMap());
       timeList.remove(booking.time);
+      return true;
     } else {
       print('Chosen time slot is not available');
+      return false;
     }
   }
 
-    void fetchBookingsForDoctor(String docEmail) async {
+  void fetchBookingsForDoctor(String docEmail) async {
     try {
       var result = await FirebaseFirestore.instance
           .collection('Bookings')
@@ -51,6 +55,4 @@ class BookingController extends GetxController {
       print('Error fetching bookings: $error');
     }
   }
-
-
 }

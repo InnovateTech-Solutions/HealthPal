@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:healthpal/src/config/theme/theme.dart';
-import 'package:healthpal/src/featuers/book_appointment/appointment/view/appointment_screen.dart';
-import 'package:healthpal/src/featuers/book_appointment/doctor/view/doctor_screen.dart';
+import 'package:healthpal/src/featuers/dashboard/view/dashboard_doctor.dart';
 import 'package:healthpal/src/featuers/dashboard/view/dashboard_page.dart';
-import 'package:healthpal/src/featuers/dashboard/widget/medicial/medicial_continer.dart';
 import 'package:healthpal/src/featuers/profile/view/profile_page.dart';
-import 'package:healthpal/test/doctors_view.dart';
-import 'package:healthpal/test/upload_test.dart';
+import 'package:healthpal/test/chat_flutter.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -20,9 +17,9 @@ class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0;
   static final List<Widget> _widgetsOptions = [
     const DashBoardPgae(),
-    BookingScreen(),
-    const DoctorScrenn(),
-    const AppointmentScreen(),
+    const Scaffold(),
+    const DoctorDashBoard(),
+    const ChatPage(),
     const ProfileWidget()
   ];
   @override
@@ -66,7 +63,7 @@ class _MainPageState extends State<MainPage> {
                   icon: Icons.location_on_outlined,
                 ),
                 GButton(
-                  icon: Icons.access_time_outlined,
+                  icon: Icons.chat,
                 ),
                 GButton(
                   icon: Icons.account_circle_outlined,

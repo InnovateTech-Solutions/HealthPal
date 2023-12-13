@@ -6,19 +6,28 @@ import 'package:healthpal/src/core/widget/text_widget.dart';
 class DoctorsWidget extends StatelessWidget {
   const DoctorsWidget(
       {super.key,
+      required this.doctorEmail,
       required this.experince,
       required this.doctorname,
       required this.imgname,
       required this.ratingNumber,
       required this.ratingLength,
-      required this.medicialcenter});
-
+      required this.medicialcenter,
+      required this.description,
+      required this.workingHours,
+      required this.address,
+      required this.patients});
+  final String doctorEmail;
   final String doctorname;
   final String imgname;
   final String ratingNumber;
   final String ratingLength;
   final String medicialcenter;
   final String experince;
+  final String description;
+  final String workingHours;
+  final String address;
+  final String patients;
 
   @override
   Widget build(BuildContext context) {

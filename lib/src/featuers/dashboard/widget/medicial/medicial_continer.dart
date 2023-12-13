@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 import 'package:healthpal/src/featuers/dashboard/widget/medicial/medicial_widget.dart';
+import 'package:healthpal/src/featuers/medicial_centers/view/medicialcenter_Screen.dart';
 
 class MedicalCenterContainer extends StatefulWidget {
   const MedicalCenterContainer({super.key});
@@ -39,12 +41,20 @@ class _MedicalCenterContainerState extends State<MedicalCenterContainer> {
             itemCount: snapshot.data!.docs.length,
             itemBuilder: (context, index) {
               var medicalCenter = snapshot.data!.docs[index];
-              return MedicicalCenterWidget(
-                  title: medicalCenter['title'],
+              return GestureDetector(
+                onTap: () => Get.to(MedicialCenterScreen(
+                  medicialCenter: medicalCenter['title'],
+                  imgname: medicalCenter['image'],
                   address: medicalCenter['address'],
-                  entrereview: medicalCenter['review'],
                   review: medicalCenter['review'],
-                  image: medicalCenter['image']);
+                )),
+                child: MedicicalCenterWidget(
+                    title: medicalCenter['title'],
+                    address: medicalCenter['address'],
+                    entrereview: medicalCenter['review'],
+                    review: medicalCenter['review'],
+                    image: medicalCenter['image']),
+              );
             },
           ),
         );
