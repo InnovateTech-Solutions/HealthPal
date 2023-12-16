@@ -47,6 +47,12 @@ class PdfUpload extends GetxController {
         'pdfPath': downloadURL,
         'status': false,
         'MedicalCenter': medicl,
+        'Working Time': '9 AM - 22 PM',
+        'description':
+            ' the compassionate caregiver, goes beyond medical treatment, offering emotional support and guidance to patients and their families.',
+        'experince': '5 year',
+        'patients': '1800',
+        'rating': '4.5',
       });
 
       // Reset form fields
