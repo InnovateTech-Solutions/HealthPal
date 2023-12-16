@@ -29,16 +29,10 @@ class _DoctorRegisterScreenState extends State<DoctorRegisterScreen> {
     final pdfController = Get.put(PdfUpload());
     return Scaffold(
       body: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Image.asset('assets/Logo.png'),
-              const Gap(5),
-              TextWidget.mainAppText('HealthPal'),
-              const Gap(20),
-              TextWidget.mainAppText('Create Account '),
-              TextWidget.subAppText('We are here to help you!'),
               Form(
                 key: controller.formkey,
                 child: SizedBox(
@@ -259,6 +253,28 @@ class _DoctorRegisterScreenState extends State<DoctorRegisterScreen> {
                           ),
                         ],
                       ),
+                      const Gap(15),
+                      formscontainer(
+                          title: 'Sign In',
+                          onTap: () => {
+                                controller.onSignup(UserModel(
+                                    email: controller.email.text,
+                                    name: controller.userName.text,
+                                    password: controller.password.text,
+                                    phone: controller.phoneNumber.text,
+                                    userType: 'Doctor',
+                                    imageUrl: '')),
+                                pdfController.saveToFirebase(
+                                    UserModel(
+                                      email: controller.email.text,
+                                      name: controller.userName.text,
+                                      password: controller.password.text,
+                                      phone: controller.phoneNumber.text,
+                                      userType: 'Doctor',
+                                      imageUrl: '',
+                                    ),
+                                    selectedCategory ?? '')
+                              })
                     ],
                   ),
                 ),
