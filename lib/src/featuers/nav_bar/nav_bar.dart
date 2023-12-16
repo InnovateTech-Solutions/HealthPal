@@ -29,7 +29,17 @@ class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0;
   static final List<Widget> _widgetsOptions = [
     const DashBoardPgae(),
-    const Scaffold(),
+    Scaffold(
+      body: SizedBox(
+        height: 200,
+        width: 200,
+        child: Center(
+          child: ElevatedButton(
+              onPressed: () => Authentication().logout(),
+              child: Text('thhghfg')),
+        ),
+      ),
+    ),
     const DoctorDashBoard(),
     const ChatPage(),
     const ProfileWidget()

@@ -52,7 +52,8 @@ class PdfUpload extends GetxController {
             ' the compassionate caregiver, goes beyond medical treatment, offering emotional support and guidance to patients and their families.',
         'experince': '5 year',
         'patients': '1800',
-        'rating': '4.5',
+        'rating': '5',
+        'address': 'Al Yasmin Amman'
       });
 
       // Reset form fields

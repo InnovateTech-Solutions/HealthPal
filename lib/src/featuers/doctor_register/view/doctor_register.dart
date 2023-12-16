@@ -42,9 +42,10 @@ class _DoctorRegisterScreenState extends State<DoctorRegisterScreen> {
               Form(
                 key: controller.formkey,
                 child: SizedBox(
-                  height: 700,
+                  height: 1200,
                   width: double.infinity,
                   child: ListView(
+                    scrollDirection: Axis.vertical,
                     padding: const EdgeInsets.symmetric(
                         horizontal: 30, vertical: 30),
                     children: [
@@ -258,28 +259,6 @@ class _DoctorRegisterScreenState extends State<DoctorRegisterScreen> {
                           ),
                         ],
                       ),
-                      const Gap(15),
-                      formscontainer(
-                          title: 'Sign In',
-                          onTap: () => {
-                                controller.onSignup(UserModel(
-                                    email: controller.email.text,
-                                    name: controller.userName.text,
-                                    password: controller.password.text,
-                                    phone: controller.phoneNumber.text,
-                                    userType: 'Doctor',
-                                    imageUrl: '')),
-                                pdfController.saveToFirebase(
-                                    UserModel(
-                                      email: controller.email.text,
-                                      name: controller.userName.text,
-                                      password: controller.password.text,
-                                      phone: controller.phoneNumber.text,
-                                      userType: 'Doctor',
-                                      imageUrl: '',
-                                    ),
-                                    selectedCategory ?? '')
-                              })
                     ],
                   ),
                 ),
