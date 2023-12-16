@@ -1,6 +1,11 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:gap/gap.dart';
-import 'package:healthpal/src/featuers/dashboard/widget/doctors/doctor_bookingg_card.dart';
+import 'package:get/get.dart';
+import 'package:healthpal/src/core/usecase/authentication/authentication.dart';
+import 'package:healthpal/src/featuers/dashboard/widget/doctors/doctor_booking_card.dart';
 
 class DoctorDashBoard extends StatefulWidget {
   const DoctorDashBoard({super.key});
@@ -10,32 +15,58 @@ class DoctorDashBoard extends StatefulWidget {
 }
 
 class _DoctorDashBoardState extends State<DoctorDashBoard> {
+  List<DocumentSnapshot> bookings = [];
+  final _authRepo = Get.put(Authentication());
+
+  late final email = _authRepo.firebaseUser.value?.email;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchBookingsForDoctor(email ?? '');
+  }
+
+  void fetchBookingsForDoctor(String docEmail) async {
+    try {
+      var result = await FirebaseFirestore.instance
+          .collection('Bookings')
+          .where('docEmail', isEqualTo: docEmail)
+          .get();
+
+      setState(() {
+        bookings = result.docs;
+      });
+    } catch (error) {
+      print('Error fetching bookings: $error');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-          child: Column(children: [
-            SizedBox(
-              height: 614,
-              width: double.infinity,
-              child: ListView.separated(
-                  itemBuilder: (context, index) {
-                    return doctorBookingsCard(context,
-                        image: '',
-                        status: '',
-                        patientEmail: '',
-                        date: '',
-                        time: '');
-                  },
-                  separatorBuilder: (context, index) {
-                    return const Gap(30);
-                  },
-                  itemCount: 10),
-            ),
-          ]),
-        ),
+    return Scaffold(
+      appBar: AppBar(
+        scrolledUnderElevation: 0,
+        elevation: 0,
+        title: const Text('Doctor Bookings'),
+      ),
+      body: ListView.builder(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        itemCount: bookings.length,
+        itemBuilder: (context, index) {
+          var bookingData = bookings[index].data() as Map<String, dynamic>;
+          var documentId = bookings[index].id;
+          return Column(children: [
+            const Gap(15),
+            doctorBookingsCard(context,
+                status: bookingData['status'],
+                patientEmail: bookingData['userEmail'],
+                date: bookingData['date'],
+                time: bookingData['time'],
+                image: bookingData['testImg'],
+                id: documentId),
+            const Gap(15)
+          ]);
+        },
       ),
     );
   }

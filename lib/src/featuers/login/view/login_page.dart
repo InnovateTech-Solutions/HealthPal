@@ -35,66 +35,68 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 50),
-          child: Column(
-            children: [
-              Image.asset('assets/Logo.png'),
-              const Gap(5),
-              TextWidget.mainAppText('HealthPal'),
-              const Gap(20),
-              TextWidget.mainAppText('Hi, Welcome Back! '),
-              TextWidget.subAppText('Hope you’re doing fine.'),
-              Form(
-                key: controller.formkey,
-                child: SizedBox(
-                  height: 450,
-                  width: double.infinity,
-                  child: ListView(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 30, vertical: 30),
-                    children: [
-                      FormWidget(
-                          textForm: FormModel(
-                              controller: controller.email,
-                              enableText: false,
-                              hintText: AppConst.email,
-                              icon: const Icon(Icons.email),
-                              invisible: false,
-                              validator: (email) =>
-                                  controller.validateEmail(email),
-                              type: TextInputType.emailAddress,
-                              onChange: null,
-                              inputFormat: [],
-                              onTap: null)),
-                      const Gap(15),
-                      FormWidget(
-                          textForm: FormModel(
-                              controller: controller.password,
-                              enableText: false,
-                              hintText: AppConst.password,
-                              icon: const Icon(Icons.password),
-                              invisible: true,
-                              validator: (password) =>
-                                  controller.vaildatePassword(password),
-                              type: TextInputType.visiblePassword,
-                              onChange: null,
-                              inputFormat: [],
-                              onTap: null)),
-                      const Gap(15),
-                      formscontainer(
-                          title: 'Sign In',
-                          onTap: () => {
-                                controller.onLogin(),
-                                UserRepository()
-                                    .getUserDetails(controller.email.text),
-                                LocalStroageController().logIn()
-                              })
-                    ],
+        body: SingleChildScrollView(
+          child: Container(
+            margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 50),
+            child: Column(
+              children: [
+                Image.asset('assets/Logo.png'),
+                const Gap(5),
+                TextWidget.mainAppText('HealthPal'),
+                const Gap(20),
+                TextWidget.mainAppText('Hi, Welcome Back! '),
+                TextWidget.subAppText('Hope you’re doing fine.'),
+                Form(
+                  key: controller.formkey,
+                  child: SizedBox(
+                    height: 450,
+                    width: double.infinity,
+                    child: ListView(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 30, vertical: 30),
+                      children: [
+                        FormWidget(
+                            textForm: FormModel(
+                                controller: controller.email,
+                                enableText: false,
+                                hintText: AppConst.email,
+                                icon: const Icon(Icons.email),
+                                invisible: false,
+                                validator: (email) =>
+                                    controller.validateEmail(email),
+                                type: TextInputType.emailAddress,
+                                onChange: null,
+                                inputFormat: [],
+                                onTap: null)),
+                        const Gap(15),
+                        FormWidget(
+                            textForm: FormModel(
+                                controller: controller.password,
+                                enableText: false,
+                                hintText: AppConst.password,
+                                icon: const Icon(Icons.password),
+                                invisible: true,
+                                validator: (password) =>
+                                    controller.vaildatePassword(password),
+                                type: TextInputType.visiblePassword,
+                                onChange: null,
+                                inputFormat: [],
+                                onTap: null)),
+                        const Gap(15),
+                        formscontainer(
+                            title: 'Sign In',
+                            onTap: () => {
+                                  controller.onLogin(),
+                                  UserRepository()
+                                      .getUserDetails(controller.email.text),
+                                  LocalStroageController().logIn()
+                                })
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

@@ -21,7 +21,7 @@ class _DashBoardPgaeState extends State<DashBoardPgae> {
   @override
   void initState() {
     super.initState();
-    UserRepository().getUserDetails(email ?? '');
+    userRepository.getUserDetails(email ?? '');
   }
 
   @override
@@ -44,10 +44,7 @@ class _DashBoardPgaeState extends State<DashBoardPgae> {
           } else if (controller.userType == 'User') {
             return const UserDashBorad();
           } else {
-            // Return DashboardWidget
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
+            return const Center(child: CircularProgressIndicator());
           }
         }
       },

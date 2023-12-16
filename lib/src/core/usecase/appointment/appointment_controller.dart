@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:healthpal/src/core/model/booking_model.dart';
@@ -43,11 +45,11 @@ class BookingController extends GetxController {
     }
   }
 
-  void fetchBookingsForDoctor(String docEmail) async {
+  void fetchBookingsForUser(String userEmail) async {
     try {
       var result = await FirebaseFirestore.instance
           .collection('Bookings')
-          .where('docEmail', isEqualTo: docEmail)
+          .where('userEmail', isEqualTo: userEmail)
           .get();
 
       allbookings.assignAll(result.docs);

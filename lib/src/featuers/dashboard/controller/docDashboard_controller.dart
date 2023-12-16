@@ -1,15 +1,16 @@
+// ignore_for_file: avoid_print, file_names
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
-
 class DocDashboardController extends GetxController {
   late RxList<DocumentSnapshot<Map<String, dynamic>>> bookings;
-  
+
   @override
   void onInit() {
     super.onInit();
     bookings = <DocumentSnapshot<Map<String, dynamic>>>[].obs;
-    fetchBookingsForDoctor('');
+    // fetchBookingsForDoctor('');
   }
 
   void fetchBookingsForDoctor(String docEmail) async {
@@ -29,9 +30,9 @@ class DocDashboardController extends GetxController {
     try {
       var result = await FirebaseFirestore.instance
           .collection('Bookings')
-          .where('docEmail',
-              isEqualTo: docEmail).where('status',
-              isEqualTo: status ).get();
+          .where('docEmail', isEqualTo: docEmail)
+          .where('status', isEqualTo: status)
+          .get();
 
       bookings.assignAll(result.docs);
     } catch (error) {
@@ -39,19 +40,18 @@ class DocDashboardController extends GetxController {
     }
   }
 
-
-  Future<void> updateStatus(String status, String bookignId)async{
-  await FirebaseFirestore.instance
-      .collection("Bookings")
-      .doc(bookignId)  
-      .get()
-      .then((bookingDoc) {
-    if (bookingDoc.exists) {
-      bookingDoc.reference.update({'status': status});
-    } else {
-      print('Document with ID $bookignId does not exist.');
-    }
-  });
+  Future<void> updateStatus(String status, String bookignId) async {
+    await FirebaseFirestore.instance
+        .collection("Bookings")
+        .doc(bookignId)
+        .get()
+        .then((bookingDoc) {
+      if (bookingDoc.exists) {
+        bookingDoc.reference.update({'status': status});
+        Get.back();
+      } else {
+        print('Document with ID $bookignId does not exist.');
+      }
+    });
   }
-
 }

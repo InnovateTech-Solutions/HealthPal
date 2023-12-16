@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:gap/gap.dart';
 import 'package:healthpal/src/core/widget/text_widget.dart';
 
@@ -8,13 +7,8 @@ Center medicialCard(
     required String address,
     required String review,
     required String imgname}) {
-  var ratingint = double.parse(review);
-  // Take the first 20 characters from the string
-
-  // Take the first 20 characters from the string
   String newadress = address.substring(0, 10);
   String newName = name.substring(0, 10);
-  // Append ".." to the result
   String truncatedadress = '$newadress..';
 
   String truncatedname = '$newName..';

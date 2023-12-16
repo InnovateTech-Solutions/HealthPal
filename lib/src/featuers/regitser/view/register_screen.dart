@@ -89,7 +89,7 @@ class RegisterScreen extends StatelessWidget {
                                   controller.vaildatePassword(phone),
                               type: TextInputType.phone,
                               onChange: null,
-                              inputFormat: null,
+                              inputFormat: [controller.maskFormatterPhone],
                               onTap: null)),
                       const Gap(30),
                       formscontainer(

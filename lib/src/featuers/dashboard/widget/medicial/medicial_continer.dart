@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:healthpal/src/featuers/dashboard/widget/medicial/medicial_widget.dart';
-import 'package:healthpal/src/featuers/medicial_centers/view/medicialcenter_Screen.dart';
+import 'package:healthpal/src/featuers/medicial_centers/view/medicialcenter_screen.dart';
 
 class MedicalCenterContainer extends StatefulWidget {
   const MedicalCenterContainer({super.key});

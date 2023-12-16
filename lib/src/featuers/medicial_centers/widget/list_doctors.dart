@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -10,7 +12,7 @@ class DoctorList extends StatelessWidget {
       future: fetchData(medicial),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator());
         } else if (snapshot.hasError) {
           return Center(child: Text('Error: ${snapshot.error}'));
         } else {
@@ -68,7 +70,7 @@ class DoctorList extends StatelessWidget {
       return usersQuery.docs;
     } catch (e) {
       print('Error: $e');
-      throw e;
+      rethrow;
     }
   }
 }

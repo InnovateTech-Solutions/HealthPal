@@ -1,37 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:healthpal/src/config/theme/theme.dart';
-import 'package:healthpal/src/core/usecase/authentication/authentication.dart';
-import 'package:healthpal/src/core/usecase/user_repository/user_repository.dart';
-import 'package:healthpal/src/featuers/dashboard/view/dashboard_doctor.dart';
 import 'package:healthpal/src/featuers/dashboard/view/dashboard_page.dart';
 import 'package:healthpal/src/featuers/profile/view/profile_page.dart';
-import 'package:healthpal/test/chat_flutter.dart';
 
-class MainPage extends StatefulWidget {
-  const MainPage({Key? key}) : super(key: key);
+class DoctorMainPage extends StatefulWidget {
+  const DoctorMainPage({Key? key}) : super(key: key);
 
   @override
-  State<MainPage> createState() => _MainPageState();
+  State<DoctorMainPage> createState() => _DoctorMainPageState();
 }
 
-class _MainPageState extends State<MainPage> {
-  final _authRepo = Get.put(Authentication());
-  late final email = _authRepo.firebaseUser.value?.email;
-  final userRepository = Get.put(UserRepository());
-  @override
-  void initState() {
-    super.initState();
-    userRepository.getUserDetails(email ?? '');
-  }
-
+class _DoctorMainPageState extends State<DoctorMainPage> {
   int _selectedIndex = 0;
   static final List<Widget> _widgetsOptions = [
     const DashBoardPgae(),
-    const Scaffold(),
-    const DoctorDashBoard(),
-    const ChatPage(),
     const ProfileWidget()
   ];
   @override
@@ -70,15 +53,6 @@ class _MainPageState extends State<MainPage> {
                 ),
                 GButton(
                   icon: Icons.category_outlined,
-                ),
-                GButton(
-                  icon: Icons.location_on_outlined,
-                ),
-                GButton(
-                  icon: Icons.chat,
-                ),
-                GButton(
-                  icon: Icons.account_circle_outlined,
                 ),
               ],
               selectedIndex: _selectedIndex,
