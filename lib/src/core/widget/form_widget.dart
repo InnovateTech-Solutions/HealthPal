@@ -5,9 +5,10 @@ import 'package:healthpal/src/config/theme/theme.dart';
 import 'package:healthpal/src/core/model/form_model.dart';
 
 class FormWidget extends StatefulWidget {
-  FormWidget({required this.textForm, Key? key}) : super(key: key);
+  FormWidget({required this.textForm, this.maxlength, Key? key})
+      : super(key: key);
   FormModel textForm;
-
+  int? maxlength;
   @override
   State<FormWidget> createState() => _FormWidgetState();
 }
@@ -28,6 +29,7 @@ class _FormWidgetState extends State<FormWidget> {
           ],
         ),
         child: TextFormField(
+            maxLength: widget.maxlength,
             onTap: widget.textForm.onTap,
             readOnly: widget.textForm.enableText,
             inputFormatters: widget.textForm.inputFormat,

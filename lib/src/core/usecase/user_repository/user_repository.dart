@@ -101,7 +101,7 @@ class UserRepository extends GetxController {
     }
   }
 
-  void addImage() {
+  void addImage() async {
     _db
         .collection("users")
         .where('Email', isEqualTo: userModel.email)

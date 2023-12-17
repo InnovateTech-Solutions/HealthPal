@@ -29,17 +29,22 @@ class _DoctorRegisterScreenState extends State<DoctorRegisterScreen> {
     final pdfController = Get.put(PdfUpload());
     return Scaffold(
       body: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+        margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: SingleChildScrollView(
           child: Column(
             children: [
+              Image.asset('assets/Logo.png'),
+              const Gap(5),
+              TextWidget.mainAppText('HealthPal'),
+              const Gap(20),
+              TextWidget.mainAppText('Create Account '),
+              TextWidget.subAppText('We are here to help you!'),
               Form(
                 key: controller.formkey,
                 child: SizedBox(
-                  height: 1200,
+                  height: 700,
                   width: double.infinity,
                   child: ListView(
-                    scrollDirection: Axis.vertical,
                     padding: const EdgeInsets.symmetric(
                         horizontal: 30, vertical: 30),
                     children: [

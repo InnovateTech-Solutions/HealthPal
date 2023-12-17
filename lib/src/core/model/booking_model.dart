@@ -38,7 +38,6 @@ class Booking {
       'testImg': testImg,
       'note': note,
       'status': status,
-
     };
   }
 }

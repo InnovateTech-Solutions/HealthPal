@@ -14,7 +14,10 @@ class DoctorRegisterController extends GetxController {
   final TextEditingController password = TextEditingController();
   final TextEditingController phoneNumber = TextEditingController();
   final TextEditingController userName = TextEditingController();
-
+  final TextEditingController editingController = TextEditingController();
+  final TextEditingController addreas = TextEditingController();
+  final TextEditingController expirans = TextEditingController();
+  final TextEditingController pashint = TextEditingController();
   var maskFormatterPhone = MaskTextInputFormatter(
       mask: '### ### ####',
       filter: {"#": RegExp(r'[0-9]')},
@@ -36,6 +39,41 @@ class DoctorRegisterController extends GetxController {
     return 'Email is not vaild';
   }
 
+  vaildateUserName(String? userName) {
+    if (GetUtils.isUsername(userName!)) {
+      return null;
+    }
+    return 'UserName is not vaild';
+  }
+
+  vaildeEdit(String? email) {
+    if (GetUtils.isUsername(email!)) {
+      return null;
+    }
+    return 'edit is not vaild';
+  }
+
+  vailaddreas(String? addreas) {
+    if (GetUtils.isUsername(addreas!)) {
+      return null;
+    }
+    return 'edit is not vaild';
+  }
+
+  vailexpirans(String? expirans) {
+    if (GetUtils.isPhoneNumber(expirans!)) {
+      return null;
+    }
+    return 'edit is not vaild';
+  }
+
+  vailpashint(String? pashint) {
+    if (GetUtils.isPhoneNumber(pashint!)) {
+      return null;
+    }
+    return 'edit is not vaild';
+  }
+
   vaildatePassword(String? password) {
     if (!GetUtils.isLengthGreaterOrEqual(password, 6)) {
       return 'Password is not vaild';
@@ -43,7 +81,7 @@ class DoctorRegisterController extends GetxController {
     return null;
   }
 
-  vaildateUserName(String? userName) {
+  vaildateUserNameFiled(String? userName) {
     if (GetUtils.isUsername(userName!)) {
       return null;
     }

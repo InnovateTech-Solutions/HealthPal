@@ -8,4 +8,8 @@ class AppConst {
   static String age = "Date of birth";
   static String username = "User Name";
   static String phoneNumber = "Phone Number";
+  static String edit = "edit";
+  static String addreas = "addreas";
+  static String expirans = "expirans";
+  static String pashint = "pashint";
 }
