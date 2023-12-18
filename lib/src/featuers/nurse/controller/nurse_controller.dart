@@ -15,14 +15,14 @@ class NuserController extends GetxController {
   final _db = FirebaseFirestore.instance;
 
   validateUsername(String? name) {
-    if (GetUtils.isUsername(name!)) {
+    if (!GetUtils.isUsername(name!)) {
       return null;
     }
     return 'name is not vaild';
   }
 
   validateUsernat(String? nat) {
-    if (GetUtils.isUsername(nat!)) {
+    if (!GetUtils.isUsername(nat!)) {
       return null;
     }
     return 'nat is not vaild';
