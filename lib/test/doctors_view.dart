@@ -7,11 +7,9 @@ class DoctorUsersList extends StatelessWidget {
   const DoctorUsersList({super.key});
 
   Future<QuerySnapshot> getDoctorUsers() async {
-    // Get a reference to the users collection
     CollectionReference usersCollection =
         FirebaseFirestore.instance.collection('users');
 
-    // Use a query to get documents where the field 'usertype' is equal to 'Doctor'
     return await usersCollection.where('usertype', isEqualTo: 'Doctor').get();
   }
 

@@ -14,65 +14,68 @@ class NurseView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(NuserController());
-    var age = int.parse(controller.age.text);
-    return Scaffold(
-      body: Column(
-        children: [
-          Form(
-              key: controller.formkey,
-              child: Column(
-                children: [
-                  FormWidget(
-                      textForm: FormModel(
-                          controller: controller.name,
-                          enableText: false,
-                          hintText: 'name',
-                          icon: Icon(Icons.near_me),
-                          invisible: false,
-                          validator: (name) =>
-                              controller.validateUsername(name),
-                          type: TextInputType.name,
-                          onChange: null,
-                          inputFormat: null,
-                          onTap: null)),
-                  Gap(20),
-                  FormWidget(
-                      textForm: FormModel(
-                          controller: controller.nat,
-                          enableText: false,
-                          hintText: 'nat',
-                          icon: Icon(Icons.near_me),
-                          invisible: false,
-                          validator: (name) => controller.validateUsernat(name),
-                          type: TextInputType.name,
-                          onChange: null,
-                          inputFormat: null,
-                          onTap: null)),
-                  Gap(20),
-                  FormWidget(
-                      maxlength: 2,
-                      textForm: FormModel(
-                          controller: controller.age,
-                          enableText: false,
-                          hintText: 'age',
-                          icon: Icon(Icons.near_me),
-                          invisible: false,
-                          validator: (name) =>
-                              controller.validateUsername(name),
-                          type: TextInputType.phone,
-                          onChange: null,
-                          inputFormat: null,
-                          onTap: null)),
-                  Gap(20),
-                  formscontainer(
-                      title: 'nurse submit',
-                      onTap: () => controller.onSubmit(NuserModel(
-                          name: controller.name.text,
-                          age: age,
-                          nat: controller.nat.text)))
-                ],
-              ))
-        ],
+
+    return SafeArea(
+      child: Scaffold(
+        body: Column(
+          children: [
+            Form(
+                key: controller.formkey,
+                child: Column(
+                  children: [
+                    FormWidget(
+                        textForm: FormModel(
+                            controller: controller.name,
+                            enableText: false,
+                            hintText: 'name',
+                            icon: Icon(Icons.near_me),
+                            invisible: false,
+                            validator: (name) =>
+                                controller.validateUsername(name),
+                            type: TextInputType.name,
+                            onChange: null,
+                            inputFormat: null,
+                            onTap: null)),
+                    Gap(20),
+                    FormWidget(
+                        textForm: FormModel(
+                            controller: controller.nat,
+                            enableText: false,
+                            hintText: 'nat',
+                            icon: Icon(Icons.near_me),
+                            invisible: false,
+                            validator: (name) =>
+                                controller.validateUsernat(name),
+                            type: TextInputType.name,
+                            onChange: null,
+                            inputFormat: null,
+                            onTap: null)),
+                    Gap(20),
+                    FormWidget(
+                        maxlength: 2,
+                        textForm: FormModel(
+                            controller: controller.age,
+                            enableText: false,
+                            hintText: 'age',
+                            icon: Icon(Icons.near_me),
+                            invisible: false,
+                            validator: (name) =>
+                                controller.validateUsername(name),
+                            type: TextInputType.phone,
+                            onChange: null,
+                            inputFormat: null,
+                            onTap: null)),
+                    Gap(20),
+                    formscontainer(
+                        title: 'nurse submit',
+                        onTap: () => controller.onSubmit(NuserModel(
+                            name: controller.name.text,
+                            age: int.parse(controller.age.text),
+                            nat: controller.nat.text)))
+                  ],
+                ))
+          ],
+        ),
       ),
     );
   }
