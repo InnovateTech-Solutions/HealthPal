@@ -59,8 +59,7 @@ class NurseView extends StatelessWidget {
                             hintText: 'age',
                             icon: Icon(Icons.near_me),
                             invisible: false,
-                            validator: (name) =>
-                                controller.validateUsername(name),
+                            validator: (name) => controller.validateage(name),
                             type: TextInputType.phone,
                             onChange: null,
                             inputFormat: null,

@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_chat_ui/flutter_chat_ui.dart';
 import 'package:get/get.dart';
 import 'package:healthpal/src/config/theme/theme.dart';
 import 'package:healthpal/src/featuers/nurse/model/nurse_model.dart';
@@ -15,14 +14,21 @@ class NuserController extends GetxController {
   final _db = FirebaseFirestore.instance;
 
   validateUsername(String? name) {
-    if (!GetUtils.isUsername(name!)) {
+    if (GetUtils.isUsername(name!)) {
       return null;
     }
     return 'name is not vaild';
   }
 
   validateUsernat(String? nat) {
-    if (!GetUtils.isUsername(nat!)) {
+    if (GetUtils.isUsername(nat!)) {
+      return null;
+    }
+    return 'nat is not vaild';
+  }
+
+  validateage(String? nat) {
+    if (!GetUtils.isPhoneNumber(nat!)) {
       return null;
     }
     return 'nat is not vaild';
@@ -38,9 +44,9 @@ class NuserController extends GetxController {
     });
   }
 
-  onSubmit(NuserModel nuserModel) {
+  onSubmit(NuserModel nuserModel) async {
     if ((formkey.currentState!.validate())) {
-      createNurse(nuserModel);
+      await createNurse(nuserModel);
       Get.snackbar("Success", "Login Successful",
           snackPosition: SnackPosition.BOTTOM,
           colorText: AppColor.mainAppColor,

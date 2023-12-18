@@ -17,12 +17,12 @@ class DashBoardPgae extends StatefulWidget {
 class _DashBoardPgaeState extends State<DashBoardPgae> {
   final _authRepo = Get.put(Authentication());
   late final email = _authRepo.firebaseUser.value?.email;
-  final userRepository = Get.put(UserRepository());
-  @override
-  void initState() {
-    super.initState();
-    userRepository.getUserDetails(email ?? '');
-  }
+  // final userRepository = Get.put(UserRepository());
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   userRepository.getUserDetails(email ?? '');
+  // }
 
   @override
   Widget build(BuildContext context) {
