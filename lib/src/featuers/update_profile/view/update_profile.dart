@@ -140,7 +140,7 @@ class _UpdateProfileWidgetState extends State<UpdateProfileWidget> {
                                       onTap: () {}),
                                 ),
                                 const Gap(15),
-                                textFieldLabel('phone number'),
+                                textFieldLabel('User type'),
                                 FormWidget(
                                   textForm: FormModel(
                                       enableText: true,

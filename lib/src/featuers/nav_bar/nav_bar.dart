@@ -6,7 +6,6 @@ import 'package:healthpal/src/core/usecase/authentication/authentication.dart';
 import 'package:healthpal/src/core/usecase/user_repository/user_repository.dart';
 import 'package:healthpal/src/featuers/dashboard/view/dashboard_doctor.dart';
 import 'package:healthpal/src/featuers/dashboard/view/dashboard_page.dart';
-import 'package:healthpal/src/featuers/nurse/view/nurse_view.dart';
 import 'package:healthpal/src/featuers/profile/view/profile_page.dart';
 import 'package:healthpal/test/chat_flutter.dart';
 
@@ -30,9 +29,9 @@ class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0;
   static final List<Widget> _widgetsOptions = [
     const DashBoardPgae(),
-    const NurseView(),
-    const DoctorDashBoard(),
-    const ChatPage(),
+    const Scaffold(),
+    const Scaffold(),
+    const Scaffold(),
     const ProfileWidget()
   ];
   @override

@@ -47,6 +47,13 @@ class PdfUpload extends GetxController {
         'pdfPath': downloadURL,
         'status': false,
         'MedicalCenter': medicl,
+        'experince': '5 yes',
+        'description':
+            'I am 32 years  , i have got ,Bachelors degree in General Medicine , i have 3 years of expertise  general medicine ',
+        'address': 'AL-JUBEIHA',
+        'Working Time': '8 am - 12 am',
+        'patients': '1200',
+        'rating': '5'
       });
 
       // Reset form fields
