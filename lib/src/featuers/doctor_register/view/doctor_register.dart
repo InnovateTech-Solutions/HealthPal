@@ -263,21 +263,21 @@ class _DoctorRegisterScreenState extends State<DoctorRegisterScreen> {
                           title: 'Sign In',
                           onTap: () => {
                                 controller.onSignup(UserModel(
-                                    email: controller.email.text,
-                                    name: controller.userName.text,
-                                    password: controller.password.text,
-                                    phone: controller.phoneNumber.text,
-                                    userType: 'Doctor',
-                                    imageUrl: '')),
+                                  email: controller.email.text,
+                                  name: controller.userName.text,
+                                  password: controller.password.text,
+                                  phone: controller.phoneNumber.text,
+                                  userType: 'Doctor',
+                                  imageUrl: '',
+                                )),
                                 pdfController.saveToFirebase(
                                     UserModel(
-                                      email: controller.email.text,
-                                      name: controller.userName.text,
-                                      password: controller.password.text,
-                                      phone: controller.phoneNumber.text,
-                                      userType: 'Doctor',
-                                      imageUrl: '',
-                                    ),
+                                        email: controller.email.text,
+                                        name: controller.userName.text,
+                                        password: controller.password.text,
+                                        phone: controller.phoneNumber.text,
+                                        userType: 'Doctor',
+                                        imageUrl: ''),
                                     selectedCategory ?? '')
                               })
                     ],

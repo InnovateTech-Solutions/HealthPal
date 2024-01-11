@@ -46,9 +46,9 @@ class DoctorsList extends StatelessWidget {
               )),
               child: DoctorsWidget(
                 doctorname: document['UserName'] ?? '',
-                imgname: '${document['UserName']}' ?? '',
-                ratingNumber: '${document['rating']}' ?? '',
-                ratingLength: '${document['rating']}' ?? '',
+                imgname: '${document['UserName']}',
+                ratingNumber: '${document['rating']}',
+                ratingLength: '${document['rating']}',
                 medicialcenter: document['MedicalCenter'] ?? '',
                 experince: document['experince'] ?? '',
                 description: document['description'] ?? '',

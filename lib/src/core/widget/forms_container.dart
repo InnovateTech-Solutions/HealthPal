@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_chat_ui/flutter_chat_ui.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:healthpal/src/config/theme/theme.dart';
 
@@ -16,7 +15,7 @@ GestureDetector formscontainer(
         borderRadius: const BorderRadius.all(Radius.circular(10)),
         boxShadow: [
           BoxShadow(
-              color: Color.fromARGB(255, 221, 212, 212).withOpacity(0.5),
+              color: const Color.fromARGB(255, 221, 212, 212).withOpacity(0.5),
               spreadRadius: 2,
               blurRadius: 3,
               offset: const Offset(0, 2)),
@@ -47,7 +46,7 @@ GestureDetector formscontainerr(
         borderRadius: const BorderRadius.all(Radius.circular(10)),
         boxShadow: [
           BoxShadow(
-              color: Color.fromARGB(255, 221, 212, 212).withOpacity(0.5),
+              color: const Color.fromARGB(255, 221, 212, 212).withOpacity(0.5),
               spreadRadius: 2,
               blurRadius: 3,
               offset: const Offset(0, 2)),

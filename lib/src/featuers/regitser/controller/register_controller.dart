@@ -15,8 +15,8 @@ class RegisterController extends GetxController {
   final TextEditingController confirmPassword = TextEditingController();
   final TextEditingController phoneNumber = TextEditingController();
   final TextEditingController userName = TextEditingController();
-  final TextEditingController gander = TextEditingController();
-  final TextEditingController age = TextEditingController();
+
+  final TextEditingController servue = TextEditingController();
   final formkey = GlobalKey<FormState>();
   final updateKey = GlobalKey<FormState>();
 
@@ -66,6 +66,13 @@ class RegisterController extends GetxController {
     return 'Phone Number is not vaild';
   }
 
+  vaildateServue(String? userName) {
+    if (GetUtils.isUsername(userName!)) {
+      return null;
+    }
+    return 'UserName is not vaild';
+  }
+
   Future<bool> isUsernameTaken(String username) async {
     try {
       FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -81,11 +88,6 @@ class RegisterController extends GetxController {
           backgroundColor: AppColor.error);
       return false;
     }
-  }
-
-  void upDateSelectedItem(String value) {
-    selectedItem.value = value;
-    gander.text = selectedItem.value;
   }
 
   Future<void> onSignup(UserModel user) async {

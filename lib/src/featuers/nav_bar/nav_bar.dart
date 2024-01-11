@@ -4,10 +4,9 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:healthpal/src/config/theme/theme.dart';
 import 'package:healthpal/src/core/usecase/authentication/authentication.dart';
 import 'package:healthpal/src/core/usecase/user_repository/user_repository.dart';
-import 'package:healthpal/src/featuers/dashboard/view/dashboard_doctor.dart';
 import 'package:healthpal/src/featuers/dashboard/view/dashboard_page.dart';
 import 'package:healthpal/src/featuers/profile/view/profile_page.dart';
-import 'package:healthpal/test/chat_flutter.dart';
+import 'package:healthpal/src/featuers/history/view/history_paget.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -29,7 +28,7 @@ class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0;
   static final List<Widget> _widgetsOptions = [
     const DashBoardPgae(),
-    const Scaffold(),
+    const HistoryPage(),
     const Scaffold(),
     const Scaffold(),
     const ProfileWidget()

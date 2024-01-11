@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:healthpal/src/core/usecase/authentication/authentication.dart';
-import 'package:healthpal/src/core/usecase/user_repository/user_repository.dart';
 import 'package:healthpal/src/core/widget/loding_widget.dart';
 import 'package:healthpal/src/featuers/dashboard/controller/usercheck_controller.dart';
 import 'package:healthpal/src/featuers/dashboard/view/dashboard_doctor.dart';

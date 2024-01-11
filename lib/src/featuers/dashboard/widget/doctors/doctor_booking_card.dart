@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:healthpal/src/config/theme/theme.dart';
 import 'package:healthpal/src/core/widget/text_widget.dart';
 import 'package:healthpal/src/featuers/dashboard/controller/docdashboard_controller.dart';
 import 'package:healthpal/src/featuers/user_history/view/booking_history.dart';

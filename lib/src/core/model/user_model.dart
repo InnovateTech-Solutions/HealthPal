@@ -7,18 +7,19 @@ class UserModel {
   late String email;
   late String phone;
   late String userType;
+  late String? servue;
   late bool status;
   late String? imageUrl;
 
-  UserModel({
-    this.id,
-    required this.email,
-    required this.name,
-    required this.password,
-    required this.phone,
-    required this.userType,
-    required this.imageUrl,
-  });
+  UserModel(
+      {this.id,
+      required this.email,
+      required this.name,
+      required this.password,
+      required this.phone,
+      required this.userType,
+      required this.imageUrl,
+      this.servue});
 
   tojason() {
     return {
@@ -27,6 +28,7 @@ class UserModel {
       "PhoneNumber": phone,
       "UserName": name,
       'usertype': userType,
+      "servue": servue
     };
   }
 
@@ -41,6 +43,7 @@ class UserModel {
       phone: data["PhoneNumber"],
       userType: data['usertype'],
       imageUrl: data["imageUrl"],
+      servue: data['servue'],
     );
   }
 }

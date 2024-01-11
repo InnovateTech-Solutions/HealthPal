@@ -92,6 +92,19 @@ class RegisterScreen extends StatelessWidget {
                               inputFormat: [controller.maskFormatterPhone],
                               onTap: null)),
                       const Gap(30),
+                      FormWidget(
+                          textForm: FormModel(
+                              controller: controller.servue,
+                              enableText: false,
+                              hintText: 'medicial recored',
+                              icon: const Icon(Icons.edit),
+                              invisible: false,
+                              validator: null,
+                              type: TextInputType.name,
+                              onChange: null,
+                              inputFormat: null,
+                              onTap: null)),
+                      const Gap(15),
                       formscontainer(
                           title: 'Sign In',
                           onTap: () => controller.onSignup(UserModel(
@@ -100,7 +113,8 @@ class RegisterScreen extends StatelessWidget {
                               password: controller.password.text,
                               phone: controller.phoneNumber.text,
                               userType: 'User',
-                              imageUrl: '')))
+                              imageUrl: '',
+                              servue: controller.servue.text)))
                     ],
                   ),
                 ),
