@@ -51,7 +51,7 @@ class UploadTestScreen extends StatelessWidget {
         ),
         elevation: 1,
         backgroundColor: AppColor.subappcolor,
-        title: TextWidget.mainAppText('Upalod Test'),
+        title: TextWidget.mainAppText('Uplaod Test'),
       ),
       body: Container(
         margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
