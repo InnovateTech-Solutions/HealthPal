@@ -69,7 +69,7 @@ class BookingsList extends GetView<HistoryController> {
                       const Gap(10),
                       Text("Time :${bookingData['time']}"),
                       const Gap(10),
-                      Text("Doctor Email : ${bookingData['docEmail']}"),
+                      Text("Doctor Email : ${bookingData['userEmail']}"),
                       const Gap(10),
                       Text("status :${bookingData['status']}"),
                     ],

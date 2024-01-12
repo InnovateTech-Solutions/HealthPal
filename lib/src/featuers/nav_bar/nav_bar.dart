@@ -69,10 +69,10 @@ class _MainPageState extends State<MainPage> {
                   icon: Icons.home_outlined,
                 ),
                 GButton(
-                  icon: Icons.category_outlined,
+                  icon: Icons.calendar_month_sharp,
                 ),
                 GButton(
-                  icon: Icons.location_on_outlined,
+                  icon: Icons.feedback,
                 ),
                 GButton(
                   icon: Icons.chat,
