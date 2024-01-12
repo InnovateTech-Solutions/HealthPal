@@ -1,20 +1,20 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import 'package:healthpal/src/core/widget/text_widget.dart';
 import 'package:healthpal/src/featuers/dashboard/controller/docdashboard_controller.dart';
 import 'package:healthpal/src/featuers/user_history/view/booking_history.dart';
 
-GestureDetector doctorBookingsCard(
-  BuildContext context, {
-  required String id,
-  required String image,
-  required String status,
-  required String patientEmail,
-  required String date,
-  required String time,
-}) {
+GestureDetector doctorBookingsCard(BuildContext context,
+    {required String id,
+    required String image,
+    required String status,
+    required String patientEmail,
+    required String date,
+    required String time,
+    required String servue}) {
   return GestureDetector(
     onTap: () => DialogsHelp._showMyDialog(
         context: context,
@@ -41,9 +41,15 @@ GestureDetector doctorBookingsCard(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           TextWidget.widgetsubText('Patient Email : $patientEmail '),
-          TextWidget.widgetsubText('Date : $date'),
-          TextWidget.widgetsubText('Time : $time'),
+          Row(
+            children: [
+              TextWidget.widgetsubText('Date : $date'),
+              Expanded(child: Container()),
+              TextWidget.widgetsubText('Time : $time'),
+            ],
+          ),
           TextWidget.widgetsubText('status : $status'),
+          TextWidget.widgetsubText('servue : $servue'),
         ],
       ),
     ),
@@ -117,7 +123,7 @@ class _DropdownExampleState extends State<DropdownExample> {
                 selectedValue = newValue!;
               });
             },
-            items: <String>['Upcoming', 'cancel', 'coming']
+            items: <String>['Upcoming', 'cancel', 'complete']
                 .map<DropdownMenuItem<String>>((String value) {
               return DropdownMenuItem<String>(
                 value: value,

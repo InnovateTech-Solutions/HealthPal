@@ -5,15 +5,15 @@ import 'package:get/get.dart';
 import 'package:healthpal/src/core/usecase/authentication/authentication.dart';
 import 'package:healthpal/src/featuers/history/controller/histroy_controller.dart';
 
-class HistoryPage extends StatelessWidget {
-  const HistoryPage({super.key});
+class DoctorHistoryPage extends StatelessWidget {
+  const DoctorHistoryPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         scrolledUnderElevation: 0,
-        title: const Text('User Bookings'),
+        title: const Text('All Doctor Bookings'),
       ),
       body: const BookingsList(),
     );
@@ -90,7 +90,7 @@ Future<QuerySnapshot> fetchData(String email) async {
     CollectionReference reviewsCollection = firestore.collection('Bookings');
 
     QuerySnapshot querySnapshot =
-        await reviewsCollection.where('userEmail', isEqualTo: email).get();
+        await reviewsCollection.where('docEmail', isEqualTo: email).get();
 
     return querySnapshot;
   } catch (e) {

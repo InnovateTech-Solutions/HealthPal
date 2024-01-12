@@ -10,7 +10,7 @@ class AppointmentScreen extends StatefulWidget {
   const AppointmentScreen(
       {required this.experince,
       required this.doctorEmail,
-      required this.doctorname, 
+      required this.doctorname,
       required this.imgname,
       required this.ratingNumber,
       required this.ratingLength,
@@ -59,8 +59,7 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
     RxString seletedTimeStamp = ''.obs;
     return Scaffold(
       backgroundColor: AppColor.mainAppColor,
-      body: SafeArea(
-          child: Column(
+      body: Column(
         children: [
           TimelineCalendar(
             calendarType: CalendarType.GREGORIAN,
@@ -73,17 +72,17 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
               headerMonthBackColor: Colors.transparent,
             ),
             dayOptions: DayOptions(
-                selectedBackgroundColor: AppColor.textFiledcolor!,
+                selectedBackgroundColor: AppColor.buttonColor,
                 compactMode: true,
                 weekDaySelectedColor: AppColor.textFiledcolor!,
                 disableDaysBeforeNow: true),
             headerOptions: HeaderOptions(
                 weekDayStringType: WeekDayStringTypes.SHORT,
                 monthStringType: MonthStringTypes.FULL,
-                backgroundColor: AppColor.mainAppColor,
-                headerTextColor: AppColor.textFiledcolor!,
+                backgroundColor: AppColor.buttonColor,
+                headerTextColor: AppColor.buttonColor,
                 resetDateColor: AppColor.textFiledcolor!,
-                calendarIconColor: AppColor.textFiledcolor!,
+                calendarIconColor: AppColor.buttonColor,
                 navigationColor: AppColor.textFiledcolor!),
             onChangeDateTime: (datetime) {
               RxString selectedDate1 = (datetime.getDate()).toString().obs;
@@ -98,10 +97,8 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
             },
           ),
           Obx(() => bookingController.timeList.isEmpty
-              ? Container(
-                  child: Center(
-                    child: Text('All Day is booked selecet another day'),
-                  ),
+              ? const Center(
+                  child: Text('All Day is booked selecet another day'),
                 )
               : Expanded(
                   child: ListView.separated(
@@ -138,12 +135,11 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                                 child: Text(
                                   bookingController.timeList[index],
                                   style: GoogleFonts.poppins(
-                                    textStyle: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w400,
-                                      color: AppColor.textFiledcolor!,
-                                    ),
-                                  ),
+                                      textStyle: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w400,
+                                    color: AppColor.buttonColor!,
+                                  )),
                                 ),
                               )
                             ],
@@ -151,7 +147,7 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                         );
                       })))
         ],
-      )),
+      ),
     );
   }
 }

@@ -47,7 +47,7 @@ class _DoctorDashBoardState extends State<DoctorDashBoard> {
       appBar: AppBar(
         scrolledUnderElevation: 0,
         elevation: 0,
-        title: const Text('Doctor Bookings'),
+        title: const Text('Upcomming Doctor Bookings'),
       ),
       body: ListView.builder(
         padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -63,7 +63,8 @@ class _DoctorDashBoardState extends State<DoctorDashBoard> {
                 date: bookingData['date'],
                 time: bookingData['time'],
                 image: bookingData['testImg'],
-                id: documentId),
+                id: documentId,
+                servue: bookingData['servue'] ?? ""),
             const Gap(15)
           ]);
         },

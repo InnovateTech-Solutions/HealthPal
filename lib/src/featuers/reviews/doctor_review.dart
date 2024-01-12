@@ -5,15 +5,15 @@ import 'package:get/get.dart';
 import 'package:healthpal/src/core/usecase/authentication/authentication.dart';
 import 'package:healthpal/src/featuers/history/controller/histroy_controller.dart';
 
-class HistoryPage extends StatelessWidget {
-  const HistoryPage({super.key});
+class DoctorReview extends StatelessWidget {
+  const DoctorReview({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         scrolledUnderElevation: 0,
-        title: const Text('User Bookings'),
+        title: const Text('Feeedback for Doctor'),
       ),
       body: const BookingsList(),
     );
@@ -44,9 +44,7 @@ class BookingsList extends GetView<HistoryController> {
                   document.data() as Map<String, dynamic>;
               // Customize the display as per your data structure
               return GestureDetector(
-                onTap: () => bookingData['status'] == "complete"
-                    ? controller.showRatingDialog(context, bookingData)
-                    : null,
+                onTap: () => null,
                 child: Container(
                   margin: const EdgeInsets.all(20),
                   padding: const EdgeInsets.all(10),
@@ -69,7 +67,7 @@ class BookingsList extends GetView<HistoryController> {
                       const Gap(10),
                       Text("Time :${bookingData['time']}"),
                       const Gap(10),
-                      Text("Doctor Email : ${bookingData['docEmail']}"),
+                      Text("feedBack : ${bookingData['feedback']}"),
                       const Gap(10),
                       Text("status :${bookingData['status']}"),
                     ],
@@ -87,10 +85,10 @@ class BookingsList extends GetView<HistoryController> {
 Future<QuerySnapshot> fetchData(String email) async {
   try {
     FirebaseFirestore firestore = FirebaseFirestore.instance;
-    CollectionReference reviewsCollection = firestore.collection('Bookings');
+    CollectionReference reviewsCollection = firestore.collection('reviews');
 
     QuerySnapshot querySnapshot =
-        await reviewsCollection.where('userEmail', isEqualTo: email).get();
+        await reviewsCollection.where('docEmail', isEqualTo: email).get();
 
     return querySnapshot;
   } catch (e) {

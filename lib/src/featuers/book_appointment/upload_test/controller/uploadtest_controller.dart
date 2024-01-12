@@ -29,7 +29,8 @@ class UploadTestController extends GetxController {
       {required String docEmail,
       required String date,
       required String time,
-      required String userEmail}) async {
+      required String userEmail,
+      required String servue}) async {
     try {
       if (selectedFile.value == null) {
         // Handle case where no file is selected
@@ -52,7 +53,8 @@ class UploadTestController extends GetxController {
           userEmail: userEmail,
           testImg: downloadURL,
           note: 'note',
-          status: 'Upcoming'));
+          status: 'Upcoming',
+          servue: servue));
 
       // Reset form fields
       imagePath.value = '';

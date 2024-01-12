@@ -145,7 +145,7 @@ class _UpdateUserWidgetState extends State<UpdateUserWidget> {
                                   textForm: FormModel(
                                       enableText: true,
                                       controller: usertype,
-                                      hintText: 'Phone Number',
+                                      hintText: '',
                                       icon: const Icon(Icons.phone),
                                       invisible: false,
                                       validator: (phoneNumber) => validator
@@ -165,7 +165,7 @@ class _UpdateUserWidgetState extends State<UpdateUserWidget> {
                                       icon: const Icon(Icons.phone),
                                       invisible: false,
                                       validator: null,
-                                      type: TextInputType.number,
+                                      type: TextInputType.name,
                                       onChange: null,
                                       inputFormat: [],
                                       onTap: () {}),

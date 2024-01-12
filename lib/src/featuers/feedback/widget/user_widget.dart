@@ -1,52 +1,33 @@
-import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:healthpal/src/core/usecase/authentication/authentication.dart';
-import 'package:healthpal/src/featuers/history/controller/histroy_controller.dart';
+import 'package:healthpal/src/featuers/feedback/controller/feedback_controller.dart';
 
-class HistoryPage extends StatelessWidget {
-  const HistoryPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        scrolledUnderElevation: 0,
-        title: const Text('User Bookings'),
-      ),
-      body: const BookingsList(),
-    );
-  }
-}
-
-class BookingsList extends GetView<HistoryController> {
-  const BookingsList({super.key});
+class UserFeedBack extends GetView<FeedBackController> {
+  const UserFeedBack({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final authRepo = Get.put(Authentication());
-    late final email = authRepo.firebaseUser.value?.email;
-    Get.put(HistoryController());
-    return FutureBuilder(
-      future: fetchData(email ?? ''),
+    Get.put(FeedBackController());
+    return FutureBuilder<QuerySnapshot<Map<String, dynamic>>>(
+      future: FirebaseFirestore.instance.collection('reviews').get(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const CircularProgressIndicator();
         } else if (snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
         } else {
+          List<QueryDocumentSnapshot<Map<String, dynamic>>> bookings =
+              snapshot.data!.docs;
+
           return ListView.builder(
-            itemCount: snapshot.data!.docs.length,
+            itemCount: bookings.length,
             itemBuilder: (context, index) {
-              DocumentSnapshot document = snapshot.data!.docs[index];
-              Map<String, dynamic> bookingData =
-                  document.data() as Map<String, dynamic>;
+              Map<String, dynamic> bookingData = bookings[index].data();
+
               // Customize the display as per your data structure
               return GestureDetector(
-                onTap: () => bookingData['status'] == "complete"
-                    ? controller.showRatingDialog(context, bookingData)
-                    : null,
                 child: Container(
                   margin: const EdgeInsets.all(20),
                   padding: const EdgeInsets.all(10),
@@ -69,9 +50,9 @@ class BookingsList extends GetView<HistoryController> {
                       const Gap(10),
                       Text("Time :${bookingData['time']}"),
                       const Gap(10),
-                      Text("Doctor Email : ${bookingData['docEmail']}"),
-                      const Gap(10),
                       Text("status :${bookingData['status']}"),
+                      const Gap(10),
+                      Text("FeedBack :${bookingData['feedback']}"),
                     ],
                   ),
                 ),
@@ -87,10 +68,10 @@ class BookingsList extends GetView<HistoryController> {
 Future<QuerySnapshot> fetchData(String email) async {
   try {
     FirebaseFirestore firestore = FirebaseFirestore.instance;
-    CollectionReference reviewsCollection = firestore.collection('Bookings');
+    CollectionReference reviewsCollection = firestore.collection('reviews');
 
     QuerySnapshot querySnapshot =
-        await reviewsCollection.where('userEmail', isEqualTo: email).get();
+        await reviewsCollection.where('docEmail', isEqualTo: email).get();
 
     return querySnapshot;
   } catch (e) {

@@ -6,6 +6,7 @@ class Booking {
   String testImg;
   String note;
   String status;
+  String servue;
 
   Booking({
     required this.docEmail,
@@ -15,6 +16,7 @@ class Booking {
     required this.testImg,
     required this.note,
     required this.status,
+    required this.servue,
   });
 
   factory Booking.fromMap(Map<String, dynamic> data) {
@@ -26,6 +28,7 @@ class Booking {
       note: data['note'],
       testImg: data["testImg"],
       status: data['status'],
+      servue: data['servue'],
     );
   }
 
@@ -38,6 +41,7 @@ class Booking {
       'testImg': testImg,
       'note': note,
       'status': status,
+      'servue': servue
     };
   }
 }
